@@ -1,0 +1,25 @@
+.grid_container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+}
+
+.grid_item_1 {
+    grid-column: span 6;
+}
+
+.grid_item_2 {
+    grid-column: span 3;
+}
+
+.grid_item_3 {
+    grid-column: span 9;
+}
+
+.grid_item_4 {
+    grid-column: span 4;
+}
+
+.grid_item_5 {
+    grid-column: span 8;
+}

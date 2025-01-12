@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "displayImage": "/P1.jpg",
+      "location": "Location 1",
+      "heading": "Property 1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, leo eget bibendum fermentum, nunc sapien ultricies purus, id ultricies nunc lacus sit amet arcu.",
+      "link": "/property-1",
+      "images": ["image1-1.jpg", "image1-2.jpg"]
+    },
+    {
+      "id": 2,
+      "displayImage": "/P2.jpg",
+      "location": "Location 1",
+      "heading": "Property 2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, leo eget bibendum fermentum, nunc sapien ultricies purus, id ultricies nunc lacus sit amet arcu. Suspendisse consequat elementum ligula, sed volutpat quam rhoncus placerat. Nulla dignissim pellentesque orci et porta. Fusce rhoncus orci sed diam fermentum, in aliquet ipsum congue. Nulla iaculis metus non erat euismod, sit amet hendrerit risus convallis. Suspendisse semper elementum mauris, vitae vestibulum massa laoreet eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sed hendrerit purus, eu lobortis dui. Nam commodo suscipit dui id placerat. Quisque eu velit dictum, rhoncus dui commodo, porta tortor. Etiam id euismod mauris, non suscipit ligula. Donec volutpat purus gravida, convallis magna vitae, imperdiet orci. Curabitur sagittis sit amet sem in congue. Integer vestibulum, ex et lacinia ultrices, odio augue blandit nisl, quis porttitor urna nisi nec odio. Ut non ipsum aliquam, vestibulum purus ac, tempor tortor. Mauris ut velit fringilla ligula euismod congue. Aenean eleifend tempor ipsum id pharetra. Cras elementum, enim volutpat viverra varius, eros orci elementum turpis, ut volutpat quam dolor vel nisi. Nam vel tempus tortor, ut placerat mi. Sed vitae dolor tortor.",
+      "link": "/property-2",
+      "images": ["image2-1.jpg", "image2-2.jpg"]
+    },
+    {
+      "id": 3,
+      "displayImage": "/P4.jpg",
+      "location": "Location 1",
+      "heading": "Property 2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, leo eget bibendum fermentum, nunc sapien ultricies purus, id ultricies nunc lacus sit amet arcu.",
+      "link": "/property-2",
+      "images": ["image2-1.jpg", "image2-2.jpg"]
+    },
+    {
+      "id": 4,
+      "displayImage": "/P5.jpg",
+      "location": "Location 1",
+      "heading": "Property 2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, leo eget bibendum fermentum, nunc sapien ultricies purus, id ultricies nunc lacus sit amet arcu.",
+      "link": "/property-2",
+      "images": ["image2-1.jpg", "image2-2.jpg"]
+    }
+]
