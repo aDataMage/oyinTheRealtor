@@ -11,7 +11,9 @@ const Properties = () => {
   return (
     <div className="">
       <div className="px-36 h-full space-y-4">
-        <h1 className="text-4xl font-bold text-center">Properties</h1>
+        <h1 className="text-4xl font-bold text-center text-gray-800">
+          Properties
+        </h1>
         <div>
           <div className="space-y-2 flex flex-col">
             {properties.slice(0, 3).map((property) => (

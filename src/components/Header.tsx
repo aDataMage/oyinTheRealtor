@@ -29,7 +29,7 @@ export default function Header() {
         setTimeout(() => {
           setIsVisible(true); // Add a delay before showing the navbar
         }, 500); // Additional delay in milliseconds
-      }, 1000); // Delay for detecting scroll stop
+      }, 300); // Delay for detecting scroll stop
     };
 
     window.addEventListener("scroll", handleScroll);
