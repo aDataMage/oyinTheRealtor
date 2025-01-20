@@ -3,7 +3,7 @@ import React from "react";
 import { useProperties } from "@/contextProvider/PropertyContext";
 import { useParams } from "next/navigation";
 import Gallary from "@/components/Gallary";
-
+import {motion} from "motion/react"
 
 function PropertyPage() {
   const params: {id: string} | null = useParams();
@@ -29,10 +29,22 @@ function PropertyPage() {
   return (
     <div className="container mx-auto space-y-10 py-10">
       {/* Main Section */}
-      <div className="flex space-x-10 h-[80vh]">
+      <div className="md:flex mx-4 space-y-8 md:space-y-0 md:space-x-10 md:h-[80vh]">
         {/* Property Image */}
-        <div className="w-1/3 h-full shrink-0 shadow-md rounded-lg overflow-hidden">
-          <img
+        <div className="md:w-1/3 md:h-full shrink-0 shadow-md rounded-lg overflow-hidden">
+          <motion.img
+            initial={{
+              filter: "grayscale(1)",
+              scale: "110%"
+            }}
+            animate={{
+              filter: "grayscale(0)",
+              scale: "100%"
+            }}
+            transition={{
+              duration:1,
+              ease:"easeIn"
+            }}
             className="object-cover w-full h-full"
             src={property.displayImage}
             alt={property.heading}
@@ -40,14 +52,14 @@ function PropertyPage() {
         </div>
 
         {/* Property Details */}
-        <div className="flex flex-col w-1/2 justify-evenly">
-          <h1 className="font-poppins font-semibold text-2xl text-accent">
+        <div className="flex flex-col items-center  space-y-4 md:w-1/2 md:justify-evenly">
+          <h1 className="text-center font-poppins font-semibold text-2xl text-accent">
             {property.heading}
           </h1>
-          <p className="font-roboto text-gray-800">{property.description}</p>
+          <p className="font-roboto text-sm text-justify text-gray-800">{property.description}</p>
           <div>
             <button
-              className="bg-accent text-accent2 px-4 py-2 rounded hover:bg-accent/80 hover:scale-105 transition-all duration-150 ease-out hover:shadow-md"
+              className="bg-accent self-center text-accent2 px-4 py-2 rounded hover:bg-accent/80 hover:scale-105 transition-all duration-150 ease-out hover:shadow-md"
               type="button"
             >
               Learn more
@@ -57,7 +69,7 @@ function PropertyPage() {
       </div>
 
       {/* Gallery Section */}
-      <div className="h-fit relative bg-black/70 rounded-lg shadow-md p-4 space-y-4">
+      <div className="hidden md:block h-fit relative bg-black/70 rounded-lg shadow-md p-4 space-y-4">
       <h2 className="text-center font-poppins text-3xl text-accent-foreground font-semibold"> Gallary</h2>
         <Gallary images={property.images} />
       </div>

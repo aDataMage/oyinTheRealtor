@@ -8,25 +8,25 @@ import TypingAnimation from "./TypingText";
 
 const Banner = () => {
   return (
-    <div className="relative h-[100vh] overflow-hidden">
+    <div className="relative lg:h-[100vh] overflow-hidden">
       {/* Background Banner */}
       <div className={styles.banner}></div>
 
       {/* Content Overlay */}
-      <div className="text-white h-full bg-black bg-opacity-50 flex justify-center items-center">
+      <div className="text-white h-full bg-black bg-opacity-50 md:flex justify-center items-center">
         {/* Text Section */}
-        <div className="space-y-4 p-4 w-1/2">
-          <motion.h1 className="text-4xl font-poppins font-bold text-left">
+        <div className="space-y-2 flex flex-col md:space-y-4 p-4 md:w-1/2 max-w-xl mx-auto">
+          <motion.h1 className="text-4xl font-poppins font-bold text-center md:text-left">
             <TypingAnimation />
           </motion.h1>
 
           <motion.div
-            className="text-center p-8 bg-gray-800 rounded-lg"
+            className="text-center p-8 self-center bg-gray-800 rounded-lg max-w-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, ease: "backIn" }}
           >
-            <p className="text-left font-roboto font-light max-w-lg">
+            <p className="text-left font-roboto font-light md:max-w-lg">
               As a Real Estate Consultant, I provide expert guidance for buying,
               selling, or investing in properties. My services include market
               analysis, property valuation, and negotiation support, tailored to
@@ -36,7 +36,7 @@ const Banner = () => {
           </motion.div>
 
           <motion.div
-            className="pt-2"
+            className="pt-2 w-full flex justify-center md:justify-start"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.5, ease: "circIn" }}
@@ -46,7 +46,7 @@ const Banner = () => {
         </div>
 
         {/* Image Section */}
-        <div className="relative flex justify-center items-center h-full w-1/4">
+        <div className="hidden relative md:flex justify-center items-center h-full w-1/4">
           <motion.div
             className="w-[280px] h-[400px] border border-accent absolute -left-[10%]"
             animate={{
