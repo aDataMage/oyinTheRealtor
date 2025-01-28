@@ -3,15 +3,7 @@ import Card from '@/components/Card'
 import { defineQuery } from 'next-sanity';
 import { sanityFetch } from '@/sanity/live';
 
-const EVENTS_QUERY = defineQuery(`*[_type == "property"] | order(dateAdded desc) {
-  _id,
-  location,
-  tag,
-  slug,
-  name,
-  description,
-  displayImage
-}
+const EVENTS_QUERY = defineQuery(`*[_type == "property"] | order(dateAdded desc)
 `);
 
 

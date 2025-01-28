@@ -33,9 +33,9 @@ export default async function Properties() {
           Properties
         </h1>
         <div>
-          <div className="space-y-4 flex items-center lg:items-stretch flex-col">
+          <div className="space-y-4 flex flex-col">
             {properties.slice(0, 3).map((property,i) => (
-              <Card property={property} index={i} key={property._id} />
+              <Card property={property} index={i+1} key={property._id} />
             ))}
           </div>
           {properties.length > 3 && (

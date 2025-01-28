@@ -1,6 +1,4 @@
 import React from "react";
-import { useProperties } from "@/contextProvider/PropertyContext";
-import { useParams } from "next/navigation";
 import Gallary from "@/components/Gallary";
 import { motion } from "motion/react";
 import ImageSwiper from "@/components/ImageSwiper";
@@ -12,20 +10,17 @@ import { defineQuery, PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Property } from "@/sanity/types";
+import { components } from "@/components/PortableImage";
 
 const EVENT_QUERY = defineQuery(`*[
     _type == "property" &&
     slug.current == $slug
   ][0]`);
 
-const { projectId, dataset } = client.config();
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
 
 export default async function PropertyPage({params}:{params:Promise<{slug:string}>}) {
-  const { data: property } = await sanityFetch({
+  const { data: property }:{data: Property} = await sanityFetch({
     query: EVENT_QUERY,
     params: await params,
   });
@@ -108,7 +103,14 @@ export default async function PropertyPage({params}:{params:Promise<{slug:string
     //         </div>
       
     // </div>
-    <div>{property.name}</div>
+    <div className="contaner px-4 mx-auto my-8"> <h1 className="text-center text-accent font-extrabold font-poppins text-4xl"> {property.name}</h1>
+    <h2 className="text-center text-gray-500 font-light font-roboto text-base mb-8">{property.location}</h2>
+    {property?.mainContent ? (
+        <div className="prose mx-auto container">
+          <PortableText value={property.mainContent} components={components}/>
+        </div>
+      ) : null}
+    </div>
   );
 }
 
