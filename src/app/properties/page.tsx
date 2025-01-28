@@ -7,7 +7,7 @@ const EVENTS_QUERY = defineQuery(`*[_type == "property"] | order(dateAdded desc)
 `);
 
 
-export async function PropertiesPage() {
+export default async function PropertiesPage() {
   const { data: properties } = await sanityFetch({ query: EVENTS_QUERY });
   return (
     <div className='flex flex-col justify-center items-center space-y-8 my-10'>
