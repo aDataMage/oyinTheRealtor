@@ -20,5 +20,3 @@ export async function PropertiesPage() {
     </div>
   )
 }
-
-export default PropertiesPage
