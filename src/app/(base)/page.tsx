@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Banner, CTA, Footer, Properties } from "@/components";
 

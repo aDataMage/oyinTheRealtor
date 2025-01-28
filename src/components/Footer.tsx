@@ -10,7 +10,7 @@ function Footer({}: Props) {
         <div className="lg:grid lg:grid-cols-3 space-y-4 gap-4 px-4 w-full items-center justify-items-center">
           <div>
             <h2 className="text-2xl text-center font-semibold">About Us</h2>
-            <p className="mt-4 text-center">
+            <p className="mt-4 text-center max-sm:max-w-sm">
               We are a real estate company that helps you find the best property
               that suits your needs
             </p>

@@ -71,7 +71,7 @@ export default function Header() {
             </li>
           ))}
         </ul>
-        <Button variant="outline" className="text-lg hidden lg:block" size="lg">
+        <Button variant="outline" className="text-lg hidden md:block" size="lg">
           Contact Me
         </Button>
         <AlignRight className="md:hidden" size={38} onClick={() => setIsMobileDialogOpen(true)}/>

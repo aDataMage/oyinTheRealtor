@@ -6,8 +6,8 @@ function CTA({}: Props) {
   return (
     <section>
       <div className="bg-gray-800 text-white py-12">
-        <div className="container mx-auto">
-          <div className="text-center">
+        <div className="container max-md:flex max-md:justify-center mx-auto">
+          <div className="text-center  max-sm:max-w-sm">
             <h2 className="text-3xl font-semibold">
               Can't Find Your Dream Property?
             </h2>

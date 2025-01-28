@@ -1,12 +1,30 @@
-"use client";
 import React from "react";
 import Card from "./Card";
 import Link from "next/link";
-import { useProperties } from "@/contextProvider/PropertyContext";
+import { defineQuery } from "next-sanity";
+import { client } from "@/sanity/client";
+import { sanityFetch } from "@/sanity/live";
+import imageUrlBuilder from "@sanity/image-url";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-const Properties = () => {
-  const { getAllProperties } = useProperties();
-  const properties = getAllProperties();
+const EVENTS_QUERY = defineQuery(`*[_type == "property"] | order(dateAdded desc) {
+  _id,
+  location,
+  tag,
+  slug,
+  name,
+  description,
+  displayImage
+}[0...3]
+`);
+
+
+
+export default async function Properties() {
+  const { data: properties } = await sanityFetch({ query: EVENTS_QUERY });
+  
+  // const { getAllProperties } = useProperties();
+  // const properties = getAllProperties();
 
   return (
     <div className="">
@@ -16,12 +34,12 @@ const Properties = () => {
         </h1>
         <div>
           <div className="space-y-4 flex items-center lg:items-stretch flex-col">
-            {properties.slice(0, 3).map((property) => (
-              <Card property={property} index={property.id} key={property.id} />
+            {properties.slice(0, 3).map((property,i) => (
+              <Card property={property} index={i} key={property._id} />
             ))}
           </div>
           {properties.length > 3 && (
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-2">
               <Link href="/properties">
                 <button className="border-accent border-solid border text-accent px-6 py-3 rounded-md shadow-md hover:bg-accent/90 transition-all duration-200 ease-in-out">
                   Show More Properties
@@ -35,4 +53,4 @@ const Properties = () => {
   );
 };
 
-export default Properties;
+
