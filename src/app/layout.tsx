@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { Roboto, Poppins, Montserrat, Open_Sans, Lato } from "next/font/google";
 import { PropertiesProvider } from "@/contextProvider/PropertyContext";
 import { CTA, Footer } from "@/components";
+import { SanityLive } from "@/sanity/live";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -38,7 +39,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <PropertiesProvider>{children}</PropertiesProvider>
+        {children}
+        <SanityLive />
       </body>
     </html>
   );

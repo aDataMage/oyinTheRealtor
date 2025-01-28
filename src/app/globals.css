@@ -83,3 +83,19 @@ body {
     @apply font-roboto;
   }
 }
+
+.custom-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: gray;
+  border-radius: 50%;
+  margin: 0 5px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.custom-bullet-active {
+  background-color: #ff561f;
+  opacity: 1;
+  transform: scale(1.2);
+}

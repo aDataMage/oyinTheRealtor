@@ -1,15 +1,14 @@
-"use client"
 import React from 'react'
-import { useProperties } from '@/contextProvider/PropertyContext'
 import Card from '@/components/Card'
-// import { ReadMore } from '@/lib/utils'
+import { defineQuery } from 'next-sanity';
+import { sanityFetch } from '@/sanity/live';
+
+const EVENTS_QUERY = defineQuery(`*[_type == "property"] | order(dateAdded desc)
+`);
 
 
-type Props = {}
-
-function PropertiesPage({}: Props) {
-    const { getAllProperties } = useProperties()
-    const properties = getAllProperties()
+export async function PropertiesPage() {
+  const { data: properties } = await sanityFetch({ query: EVENTS_QUERY });
   return (
     <div className='flex flex-col justify-center items-center space-y-8 my-10'>
         <h1 className='font-poppins text-3xl font-bold'>Properties</h1>
