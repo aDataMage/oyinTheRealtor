@@ -20,7 +20,7 @@ const EVENT_QUERY = defineQuery(`*[
 
 
 export default async function PropertyPage({params}:{params:Promise<{slug:string}>}) {
-  const { data: property }:{data: Property} = await sanityFetch({
+  const { data: property } = await sanityFetch({
     query: EVENT_QUERY,
     params: await params,
   });

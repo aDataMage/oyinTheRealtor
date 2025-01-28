@@ -80,19 +80,36 @@ export type Property = {
   location?: string;
   tag?: "Land" | "House";
   description?: string;
-  title?: string;
-  landmarks?: Array<string>;
-  proposedFacilities?: Array<string>;
-  price?: Array<{
-    type?: string;
-    size?: number;
-    amount?: number;
-    _type: "priceDetail";
+  mainContent?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
     _key: string;
   }>;
-  acreDeal?: string;
-  initialDeposit?: number;
-  paymentPlan?: string;
+  propertytitle?: string;
   contact?: Array<string>;
   displayImage?: {
     asset?: {
@@ -187,7 +204,7 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../webapp/src/components/Properties.tsx
 // Variable: EVENTS_QUERY
-// Query: *[_type == "property"] | order(dateAdded desc) {  _id,  location,  tag,  slug,  name,  description}
+// Query: *[_type == "property"] | order(dateAdded desc) {  _id,  location,  tag,  slug,  name,  description,  displayImage}[0...3]
 export type EVENTS_QUERYResult = Array<{
   _id: string;
   location: string | null;
@@ -195,18 +212,169 @@ export type EVENTS_QUERYResult = Array<{
   slug: Slug | null;
   name: string | null;
   description: string | null;
+  displayImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+}>;
+
+// Source: ../webapp/src/app/properties/page.tsx
+// Variable: POR_QUERY
+// Query: *[_type == "property"] | order(dateAdded desc)
+export type POR_QUERYResult = Array<{
+  _id: string;
+  _type: "property";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  dateAdded?: string;
+  location?: string;
+  tag?: "House" | "Land";
+  description?: string;
+  mainContent?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  propertytitle?: string;
+  contact?: Array<string>;
+  displayImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  available?: boolean;
 }>;
 
 // Source: ../webapp/src/app/properties/[slug]/page.tsx
 // Variable: EVENT_QUERY
-// Query: *[    _type == "event" &&    slug.current == $slug  ][0]{  ...,  "date": coalesce(date, now()),  "doorsOpen": coalesce(doorsOpen, 0),  headline->,  venue->}
-export type EVENT_QUERYResult = null;
+// Query: *[    _type == "property" &&    slug.current == $slug  ][0]
+export type EVENT_QUERYResult = {
+  _id: string;
+  _type: "property";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  dateAdded?: string;
+  location?: string;
+  tag?: "House" | "Land";
+  description?: string;
+  mainContent?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  propertytitle?: string;
+  contact?: Array<string>;
+  displayImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  available?: boolean;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"property\"] | order(dateAdded desc) {\n  _id,\n  location,\n  tag,\n  slug,\n  name,\n  description\n}\n": EVENTS_QUERYResult;
-    "*[\n    _type == \"event\" &&\n    slug.current == $slug\n  ][0]{\n  ...,\n  \"date\": coalesce(date, now()),\n  \"doorsOpen\": coalesce(doorsOpen, 0),\n  headline->,\n  venue->\n}": EVENT_QUERYResult;
+    "*[_type == \"property\"] | order(dateAdded desc) {\n  _id,\n  location,\n  tag,\n  slug,\n  name,\n  description,\n  displayImage\n}[0...3]\n": EVENTS_QUERYResult;
+    "*[_type == \"property\"] | order(dateAdded desc)\n": POR_QUERYResult;
+    "*[\n    _type == \"property\" &&\n    slug.current == $slug\n  ][0]": EVENT_QUERYResult;
   }
 }
