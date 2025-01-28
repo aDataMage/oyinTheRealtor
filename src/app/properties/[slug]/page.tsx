@@ -103,7 +103,7 @@ export default async function PropertyPage({params}:{params:Promise<{slug:string
     //         </div>
       
     // </div>
-    <div className="contaner px-4 mx-auto my-8"> <h1 className="text-center text-accent font-extrabold font-poppins text-4xl"> {property.name}</h1>
+    <div className="contaner px-4 mx-auto my-8 flex flex-col items-center gap-2"> <h1 className="text-center max-w-screen-sm text-accent font-extrabold font-poppins text-4xl"> {property.name}</h1>
     <h2 className="text-center text-gray-500 font-light font-roboto text-base mb-8">{property.location}</h2>
     {property?.mainContent ? (
         <div className="prose mx-auto container">

@@ -6,6 +6,7 @@ import styles from "../styles/Home.module.css";
 import { Button } from "./ui/button";
 import { AlignRight, X } from "lucide-react";
 import {AnimatePresence, motion, useAnimate, usePresence, stagger} from "motion/react";
+import Link from "next/link";
 
 
 export default function Header() {
@@ -52,8 +53,11 @@ export default function Header() {
     <header
       className={`md:sticky top-0 z-50 bg-white  transition-transform duration-300 `}
     >
-      <nav className="px-4 py-2 lg:px-8 lg:py-4 shadow-md flex items-center justify-between">
+      <nav className="px-4 py-2 lg:px-8 shadow-sm flex items-center justify-between">
         <motion.div layoutId="logo" className="flex items-center">
+          <Link
+          href={"/"}
+          >
           <Image
             src={Logo}
             alt="Logo"
@@ -61,6 +65,8 @@ export default function Header() {
             height={50}
             className="mr-4"
           />
+          </Link>
+          
         </motion.div>
         <ul className="md:flex space-x-10 hidden align-middle self-center text-lg text-slate-800">
           {links.map((link) => (

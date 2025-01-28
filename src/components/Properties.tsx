@@ -7,15 +7,7 @@ import { sanityFetch } from "@/sanity/live";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-const EVENTS_QUERY = defineQuery(`*[_type == "property"] | order(dateAdded desc) {
-  _id,
-  location,
-  tag,
-  slug,
-  name,
-  description,
-  displayImage
-}[0...3]
+const EVENTS_QUERY = defineQuery(`*[_type == "property"] | order(dateAdded desc)[0...3]
 `);
 
 
@@ -23,8 +15,7 @@ const EVENTS_QUERY = defineQuery(`*[_type == "property"] | order(dateAdded desc)
 export default async function Properties() {
   const { data: properties } = await sanityFetch({ query: EVENTS_QUERY });
   
-  // const { getAllProperties } = useProperties();
-  // const properties = getAllProperties();
+
 
   return (
     <div className="">
