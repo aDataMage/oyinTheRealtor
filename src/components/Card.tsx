@@ -35,15 +35,15 @@ const Card = ({ property, index }: { property: Property; index: number }) => {
   };
 
   // Derive Image URL or fallback to placeholder
-  const imageUrl = property.displayImage 
-  ? urlFor(property.displayImage)?.width(550)?.height(310)?.url() 
-  : "https://placehold.co/550x310/png";
+  const imageUrl = property.displayImage
+    ? urlFor(property.displayImage)?.width(550)?.height(310)?.url()
+    : "https://placehold.co/550x310/png";
 
   return (
     <motion.div
       ref={ref} // Attach ref for visibility detection
       key={property._id}
-      className={`relative flex flex-col sm:flex-row max-w-sm sm:max-w-4xl text-white rounded-lg shadow-md transition-transform duration-150 ease-out group`}
+      className={`relative flex flex-col sm:flex-row max-w-sm sm:max-w-4xl text-gray-100 shadow-sm hover:shadow-lg transition-transform duration-150 ease-out group`}
       initial={{ opacity: 0, y: 50 }} // Start hidden and below the viewport
       animate={isInView ? { opacity: 1, y: 0 } : {}} // Animate only if in view
       transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }} // Staggered effect
@@ -65,7 +65,7 @@ const Card = ({ property, index }: { property: Property; index: number }) => {
 
       {/* Content Container */}
       <div
-        className={`flex flex-col shadow-sm hover:shadow-md justify-between w-full py-4 px-4 sm:px-8 space-y-4 bg-gradient-to-b from-gray-800 to-gray-900 rounded-b-lg sm:rounded-none sm:rounded-l-lg`}
+        className={`flex flex-col justify-between w-full py-4 px-4 sm:px-8 space-y-4 bg-gradient-to-b from-gray-800 to-gray-900 max-sm:rounded-b-lg sm:rounded-none sm:rounded-r-lg`}
       >
         {/* Title & Location */}
         <div>

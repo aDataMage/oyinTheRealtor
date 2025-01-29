@@ -90,7 +90,7 @@ const Banner = () => {
       <div className="relative z-20 h-full flex flex-col md:flex-row justify-center items-center text-white p-4">
         {/* Text Section */}
         <motion.div
-          className="space-y-2 md:space-y-4 max-w-xl text-center md:text-left"
+          className="space-y-2 min-w-sm md:space-y-4 max-w-xl text-center md:text-left"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -102,7 +102,7 @@ const Banner = () => {
 
           {/* Description */}
           <motion.div
-            className="p-4 bg-gray-800 bg-opacity-75 rounded-lg max-w-sm mx-auto md:mx-0"
+            className="p-4 bg-gray-800 bg-opacity-75 rounded-lg max-sm:max-w-sm max-w-md mx-auto md:mx-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
@@ -141,7 +141,7 @@ const Banner = () => {
         >
           {/* Decorative Border */}
           <motion.div
-            className="absolute h-[32vw] w-[20vw] max-w-[280px] max-h-[390px] rounded-lg border-2 border-accent"
+            className="absolute h-[32vw] w-[30vw] max-w-[280px] right-[2%] max-h-[390px] rounded-lg border-2 border-accent"
             animate={{
               scale: [1, 1.05, 1],
             }}
@@ -154,7 +154,7 @@ const Banner = () => {
             alt="Owner"
             width={300}
             height={400}
-            className="absolute z-10 -left-[5%] rounded-lg shadow-lg"
+            className="z-10 rounded-lg shadow-lg"
           />
         </motion.div>
       </div>

@@ -25,7 +25,7 @@ export default async function Properties() {
   }
 
   return (
-    <section className="bg-gray-50 py-8">
+    <section className="container mx-auto">
       <div className="container mx-auto px-4 lg:px-36">
         {/* Section Title */}
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
@@ -53,5 +53,3 @@ export default async function Properties() {
     </section>
   );
 }
-
-
