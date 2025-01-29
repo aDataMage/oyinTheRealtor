@@ -9,12 +9,14 @@ export const components: PortableTextComponents = {
       props.value ? (
         <Image
           className="rounded-lg not-prose w-full h-auto object-cover"
-          src={urlFor(props.value)
-            .width(600)
-            .height(400)
-            .quality(80)
-            .auto("format")
-            .url()}
+          src={
+            urlFor(props.value)
+              ?.width(600)
+              ?.height(400)
+              ?.quality(80)
+              ?.auto("format")
+              ?.url() || "https://placehold.co/600x400/png"
+          }
           alt={props?.value?.alt || "Image"}
           width={600}
           height={400}
@@ -44,9 +46,7 @@ export const components: PortableTextComponents = {
     strong: ({ children }) => (
       <strong className="font-semibold text-gray-900">{children}</strong>
     ),
-    em: ({ children }) => (
-      <em className="italic text-gray-700">{children}</em>
-    ),
+    em: ({ children }) => <em className="italic text-gray-700">{children}</em>,
     link: ({ value, children }) => (
       <a
         href={value?.href}
@@ -60,10 +60,14 @@ export const components: PortableTextComponents = {
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside space-y-2 text-gray-700">{children}</ul>
+      <ul className="list-disc list-inside space-y-2 text-gray-700">
+        {children}
+      </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-inside space-y-2 text-gray-700">{children}</ol>
+      <ol className="list-decimal list-inside space-y-2 text-gray-700">
+        {children}
+      </ol>
     ),
   },
   listItem: {

@@ -1,90 +1,98 @@
+"use client";
+
 import React from "react";
-import styles from "@/styles/Properties.module.css";
 import Link from "next/link";
 import { Property } from "@/sanity/types";
 import { urlFor } from "@/lib/utils";
 import Image from "next/image";
+import { motion } from "framer-motion"; // Ensure framer-motion is installed
+import { useInView } from "framer-motion"; // Hook to detect when in view
 
 const Card = ({ property, index }: { property: Property; index: number }) => {
-  const isEven = index % 2 === 0;
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const clipText = (text: string, maxLength: number) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength) + "...";
-  };
+  // Utility function: Clips text if it exceeds the specified max length
+  const clipText = (text: string, maxLength: number) =>
+    text.length <= maxLength ? text : `${text.substring(0, maxLength)}...`;
 
-  const ReadMore = (text: string, maxLength: number, propertyId: number) => {
-    if (text.length <= maxLength) {
-      return <p>{text}</p>;
-    }
-
-    return (
+  // Renders the property description with "Read More" logic
+  const renderReadMore = (text: string, maxLength: number) => {
+    const clippedText = clipText(text, maxLength);
+    return text.length > maxLength ? (
       <p className="max-w-sm">
-        {clipText(text, maxLength)}
+        {clippedText}{" "}
         <Link
           href={`/properties/${property?.slug?.current}`}
-          className="text-blue-800"
+          className="text-accent underline hover:text-blue-600"
         >
           Read more
         </Link>
       </p>
+    ) : (
+      <p>{text}</p>
     );
   };
 
-  const ImageUrl = property.displayImage
-    ? urlFor(property.displayImage)?.width(550).height(310).url()
-    : "https://placehold.co/550x310/png";
+  // Derive Image URL or fallback to placeholder
+  const imageUrl = property.displayImage 
+  ? urlFor(property.displayImage)?.width(550)?.height(310)?.url() 
+  : "https://placehold.co/550x310/png";
 
   return (
-    <div
+    <motion.div
+      ref={ref} // Attach ref for visibility detection
       key={property._id}
-      className={`block relative sm:flex flex-col max-w-sm sm:flex-row group max-h-full justify-center sm:max-w-4xl text-white rounded-lg hover:shadow-black/45 hover:shadow-md transition-all duration-150 ease-out ${
-        !isEven ? "sm:flex-row " : "sm:flex-row-reverse sm:self-end"
-      }`}
+      className={`relative flex flex-col sm:flex-row max-w-sm sm:max-w-4xl text-white rounded-lg shadow-md transition-transform duration-150 ease-out group`}
+      initial={{ opacity: 0, y: 50 }} // Start hidden and below the viewport
+      animate={isInView ? { opacity: 1, y: 0 } : {}} // Animate only if in view
+      transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }} // Staggered effect
+      whileHover={{ scale: 1.02 }} // Slight scale increase on hover
     >
       {/* Image Container */}
       <Link
         href={`/properties/${property?.slug?.current}`}
-        className="overflow-hidden block h-56 sm:h-64 lg:h-auto w-full sm:w-[50%] relative"
+        className="relative block h-56 sm:h-64 lg:h-auto w-full sm:w-[50%] overflow-hidden"
       >
         <Image
-          src={ImageUrl}
-          alt={property.name || "Event"}
-          width={300}
-          height={200} // Use fill to make the image responsive
-          className={`w-full h-full max-sm:rounded-t-md sm:aspect-square max-md:shadow-sm object-cover transition-transform duration-500 ease-out filter brightness-75 md:grayscale ${
-            !isEven ? "sm:rounded-l-md" : "sm:rounded-r-md"
-          } group-hover:grayscale-0 group-hover:scale-105`}
+          src={imageUrl || "no"}
+          alt={property.name || "Property Image"}
+          width={550}
+          height={310}
+          className={`object-cover w-full h-full filter brightness-75 transition-transform duration-500 ease-out group-hover:brightness-100 group-hover:scale-105 sm:rounded-l-lg`}
         />
       </Link>
 
       {/* Content Container */}
       <div
-        className={`flex flex-col max-w-lg justify-between sm:justify-center w-full max-sm:rounded-b-md py-4 px-4 sm:px-8 space-y-2 sm:space-y-4 ${styles.card_bg} ${
-          !isEven ? "max-sm:pr-10 lg:rounded-r-md" : "max-sm:pl-10 lg:rounded-l-md"
-        }`}
+        className={`flex flex-col shadow-sm hover:shadow-md justify-between w-full py-4 px-4 sm:px-8 space-y-4 bg-gradient-to-b from-gray-800 to-gray-900 rounded-b-lg sm:rounded-none sm:rounded-l-lg`}
       >
+        {/* Title & Location */}
         <div>
-          <h2 className="text-xl max-sm:text-center sm:text-2xl font-bold font-poppins">
+          <h2 className="text-xl sm:text-2xl font-bold text-center sm:text-left">
             {property.name}
           </h2>
-          <p className="text-xs sm:text-sm font-roboto max-sm:text-center text-white/80">
+          <p className="text-xs sm:text-sm text-white/80 text-center sm:text-left">
             {property.location}
           </p>
         </div>
 
+        {/* Property Description */}
         <div className="font-roboto text-sm text-justify">
-          {ReadMore(property.description, 200, index)}
+          {renderReadMore(property.description!, 150)}
         </div>
 
-        <a
-          href={`/properties/${property?.slug?.current}`}
-          className="text-center max-sm:self-center text-sm sm:text-base text-accent bg-white w-32 sm:w-36 rounded font-bold px-4 py-2"
-        >
-          View Property
-        </a>
+        {/* CTA Button */}
+        <div className="flex justify-center sm:justify-start">
+          <Link
+            href={`/properties/${property?.slug?.current}`}
+            className="text-sm sm:text-base font-bold text-gray-800 bg-white rounded px-4 py-2 hover:bg-gray-200 transition-all"
+          >
+            View Property
+          </Link>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

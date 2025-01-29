@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Property } from "@/sanity/types";
-import { components } from "@/components/PortableImage";
+import { components } from "@/components/PortableComponents";
 
 const EVENT_QUERY = defineQuery(`*[
     _type == "property" &&

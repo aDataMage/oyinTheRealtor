@@ -27,13 +27,15 @@
         "name": "next"
       }
     ],
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/lib/utils.js"  ],
+    "**/*.tsx",
+    "src/lib/utils.js"
+  ],
   "exclude": [
     "node_modules"
   ]
